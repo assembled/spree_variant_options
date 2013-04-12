@@ -4,12 +4,25 @@
     <% @product.grouped_option_values.each do |type, values| %>
       <div id="<%= dom_id(type) %>" class="variant-options index-<%= index %>">
         <h6 class="variant-option-type">
-          <%= label_tag 'option-value-name', t(:select_a, :index => index + 1, :name => type.presentation.downcase) %>
           <strong class='selection'></strong>
           <%= link_to "", "#clear", :class => "icon-remove clear-button clear-index-#{index}" %>
         </h6>
+        <select id="select_<%= type.name.downcase %>" class="option_values" name="option_values[<%= type.name.downcase %>]">
+          <option value="" selected="selected"><%= t(:select_a, :index => index + 1, :name => type.presentation.downcase) %></option>
+          <% values.sort_by(&:position).each do |value| %>
+            <% classes = ["option-value"] %>
+            <% unless (variants = @product.variants_for_option_value(value)).empty? %>
+              <% classes << ( Spree::Config[:allow_backorders] || variants.sum(&:count_on_hand) > 0 || variants.map(&:on_demand).include?(true) ? "in-stock" : "out-of-stock" ) if index == 0 %>
+              <% classes << 'with-image' if value.has_image? %>
+              <option value="<%= value.id %>"><%= value.presentation %>
+            <% end %>
+          <% end %>
+        </select>
 
-        <ul class="variant-option-values" class='inline'>
+
+
+
+        <!-- <ul class="variant-option-values" class='inline'>
         <% values.sort_by(&:position).each do |value| %>
           <% classes = ["option-value"] %>
           <% unless (variants = @product.variants_for_option_value(value)).empty? %>
@@ -19,11 +32,11 @@
           <% end %>
         <% end %>
           <li class="clear"></li>
-        </ul>
+        </ul> -->
       </div>
       <% index += 1 %>
     <% end %>
-    <%= hidden_field_tag "products[#{@product.id}]", "", :id => "variant_id", :class => "hidden" %>
+    <%#= hidden_field_tag "products[#{@product.id}]", "", :id => "variant_id", :class => "hidden" %>
     <script type="text/javascript">
     //<![CDATA[
       var variant_options = new VariantOptions({
