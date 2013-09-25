@@ -6,8 +6,8 @@ Gem::Specification.new do |s|
   s.name        = "spree_variant_options"
   s.version     = SpreeVariantOptions::VERSION
   s.platform    = Gem::Platform::RUBY
-  s.authors     = ["Spencer Steffen"]
-  s.email       = ["spencer@citrusme.com"]
+  s.authors     = ["Spencer Steffen", "Stephane Bounmy"]
+  s.email       = ["spencer@citrusme.com", 'stephanebounmy@gmail.com']
   s.homepage    = "https://github.com/citrus/spree_variant_options"
   s.summary     = %q{Spree Variant Options is a simple spree extension that replaces the radio-button variant selection with groups of option types and values.}
   s.description = %q{Spree Variant Options is a simple spree extension that replaces the radio-button variant selection with groups of option types and values. Please see the documentation for more details.}
@@ -28,10 +28,11 @@ Gem::Specification.new do |s|
   # Development
   s.add_development_dependency('spree_sample',     '~> 2.0')
   s.add_development_dependency('dummier',          '~> 0.3')
-  s.add_development_dependency('shoulda',          '~> 3.0')
-  s.add_development_dependency('shoulda-context',          '1.0.0')
+  s.add_development_dependency('shoulda',          '~> 3.5')
+  s.add_development_dependency('shoulda-context',  '~> 1.1.5')
+  s.add_development_dependency('shoulda-matchers', '~> 2.0')
   s.add_development_dependency('m')
-  s.add_development_dependency('factory_girl_rails',     '~> 4.2.1')
+  s.add_development_dependency('factory_girl_rails', '~> 4.2.1')
   s.add_development_dependency('cucumber-rails',   '~> 1.2')
   s.add_development_dependency('database_cleaner', '~> 0.6')
   s.add_development_dependency('sqlite3',          '~> 1.3')
