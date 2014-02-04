@@ -1,6 +1,6 @@
 Spree::OptionValue.class_eval do
 
-  attr_accessible :image
+  # attr_accessible :image
 
   has_attached_file :image,
     :styles        => { :small => '40x30#', :large => '140x110#' },
